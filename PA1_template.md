@@ -195,9 +195,11 @@ I created a new factor variable in the dataset with two levels – “weekday”
 
 ```r
 missing_values_filled$day_of_week <- weekdays(missing_values_filled$date) 
+
 missing_values_filled$day_type[ missing_values_filled$day_of_week == "sobota"] <- "weekend"
 missing_values_filled$day_type[ missing_values_filled$day_of_week == "niedziela"] <- "weekend"
 missing_values_filled$day_type[ ( missing_values_filled$day_of_week != "niedziela" & missing_values_filled$day_of_week != "sobota") ] <- "weekday"
+
 missing_values_filled$day_type <- factor(missing_values_filled$day_type)
 ```
 

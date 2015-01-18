@@ -162,9 +162,11 @@ hist(total_steps_per_day_2$total_steps
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 <p>I created a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</p>
 <pre class="r"><code>missing_values_filled$day_of_week &lt;- weekdays(missing_values_filled$date) 
+
 missing_values_filled$day_type[ missing_values_filled$day_of_week == &quot;sobota&quot;] &lt;- &quot;weekend&quot;
 missing_values_filled$day_type[ missing_values_filled$day_of_week == &quot;niedziela&quot;] &lt;- &quot;weekend&quot;
 missing_values_filled$day_type[ ( missing_values_filled$day_of_week != &quot;niedziela&quot; &amp; missing_values_filled$day_of_week != &quot;sobota&quot;) ] &lt;- &quot;weekday&quot;
+
 missing_values_filled$day_type &lt;- factor(missing_values_filled$day_type)</code></pre>
 <p>Finally i made a panel plot containing a time series plot of the 5-minute interval and the average number of steps taken, averaged across all weekday days or weekend days.</p>
 <pre class="r"><code>avg_steps_per_interval_by_day_type &lt;- summarise( group_by(missing_values_filled, interval, day_type), avg_steps = mean(steps))
